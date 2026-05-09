@@ -16,7 +16,7 @@ export class HtmlHelper {
       const ratingCardSection = doc.childNodes[2].childNodes[3].childNodes[3].childNodes[1]
           .childNodes[1].childNodes[3].childNodes[1].childNodes[1];
       const confidentRatingsSection = ratingCardSection.childNodes[3].childNodes[1].childNodes[3]
-      // Each childnode here should have a rating element we can parse
+      // Each child node here should have a rating element we can parse
       for (let elem of confidentRatingsSection.childNodes) {
          if (elem instanceof HTMLElement) {
             ratings.push(this.parseRatingsObject(elem));

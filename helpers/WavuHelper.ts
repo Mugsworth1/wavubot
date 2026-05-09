@@ -26,25 +26,6 @@ export class WavuHelper {
             });
     }
 
-    // static getPlayerData(playerID: string): any {
-    //     return fetch(`http://wank.wavu.wiki/api/replays?p1_polaris_id=${playerID}`)
-    //         .then((response) => response.json())
-    //         .then((data) => {
-    //                 console.log(data);
-    //                 return data;
-    //             }
-    //         );
-    // }
-
-    // static getPlayerData(playerID: string): any {
-    //     return fetch(`http://wank.wavu.wiki/player/${playerID}`)
-    //         .then((data) => {
-    //                 console.log(data);
-    //                 return data.text();
-    //             }
-    //         );
-    // }
-
     static getPlayerData(playerID: string): Promise<HtmlDoc> {
         return fetch(`http://wank.wavu.wiki/player/${playerID}`)
             .then((response) => {
@@ -67,6 +48,7 @@ export class WavuHelper {
         const matchSet = html.matchAll(POLARIS_ID_REGEX);
         if (!matchSet) return null;
         //Convert to array for easier handling
+        // @ts-ignore yes it does have a toArray property shut up
         const matchSetArray = (matchSet as RegExpStringIterator<RegExpExecArray>).toArray();
         if (!matchSetArray || !matchSetArray[0]) return null;
         // We have multiple matches, have to use the more specific pattern
