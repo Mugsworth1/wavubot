@@ -1,5 +1,6 @@
 import {Client, Events, GatewayIntentBits} from 'discord.js';
-import {Commands} from "./commands/commands";
+import {Commands} from './commands/commands.js';
+
 
 // Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
@@ -17,7 +18,6 @@ client.login(process.env.token).then(() => {
 });
 
 client.on(Events.InteractionCreate, (interaction) => {
-    console.log(interaction);
     if (!interaction.isChatInputCommand()) return;
     let command;
     // I'm not doing some stupid polymorphism bullshit when I could just have a case statement

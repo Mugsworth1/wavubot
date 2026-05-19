@@ -1,17 +1,9 @@
 import {Document as HtmlDoc, HTMLElement} from "html-parser.ts";
 
-export interface RatingObject {
-   charName: string;
-   rating: string;
-   confidence: string;
-   numGames: string;
-   lastPlayed: string;
-}
-
 export class HtmlHelper {
 
-   public static getRatingInfo(doc: HtmlDoc): RatingObject[] {
-      let ratings: RatingObject[] = [];
+   static getRatingInfo(doc) {
+      let ratings = [];
       // You can't make me parse this properly I won't do it
       const ratingCardSection = doc.childNodes[2].childNodes[3].childNodes[3].childNodes[1]
           .childNodes[1].childNodes[3].childNodes[1].childNodes[1];
@@ -25,7 +17,7 @@ export class HtmlHelper {
       return ratings;
    }
 
-   private static parseRatingsObject(elem: HTMLElement): RatingObject {
+   static parseRatingsObject(elem) {
       return {
          charName: elem.childNodes[1].textContent,
          rating: elem.childNodes[3].textContent,

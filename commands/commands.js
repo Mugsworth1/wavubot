@@ -1,25 +1,20 @@
-import {CommandInteraction, SlashCommandBuilder} from "discord.js";
-import {WavuBot} from "../wavuBot";
-
-export interface Command {
-    data: any;
-    execute: any;
-}
+import {SlashCommandBuilder} from "discord.js";
+import {WavuBot} from "../wavuBot.js";
 
 export class Commands {
-    public static ping: Command = {
+    static ping = {
         data: new SlashCommandBuilder().setName('ping').setDescription('Ping Test'),
         async execute(interaction) {
             await interaction.reply('Ping Successful')
         }
     }
 
-    public static rankInfo: Command = {
+    static rankInfo = {
         data: new SlashCommandBuilder()
             .setName('wavuwank')
             .setDescription('Returns glicko2 rank info for a player from wavu.wank.wiki')
             .addStringOption(option => option.setName('name').setDescription('Name of the player you want info for').setRequired(true)),
-        async execute(interaction: CommandInteraction): Promise<void> {
+        async execute(interaction) {
             WavuBot.getRankInfo(interaction.options.data[0].value)
                 .then(async res => {
                     await interaction.reply(res)
@@ -28,7 +23,7 @@ export class Commands {
     }
 
     // This is lazy but who cares
-    public static allCommands: Command[] = [
+    static allCommands = [
         this.ping,
         this.rankInfo
     ]
