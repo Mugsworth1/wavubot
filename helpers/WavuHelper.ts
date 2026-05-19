@@ -27,7 +27,7 @@ export class WavuHelper {
     }
 
     static getPlayerData(playerID: string): Promise<HtmlDoc> {
-        return fetch(`http://wank.wavu.wiki/player/${playerID}`)
+        return fetch(this.getWavuUrl(playerID))
             .then((response) => {
                 if (!response.ok) {
                     console.log("Error getting player data: " + response.statusText);
@@ -41,6 +41,10 @@ export class WavuHelper {
                 console.error(error);
                 return null;
             });
+    }
+
+    static getWavuUrl(playerID: string): string {
+        return `http://wank.wavu.wiki/player/${playerID}`;
     }
 
     private static parsePlayerID(html: string, playerName: string): string {
