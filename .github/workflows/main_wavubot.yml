@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Set up env file
-        run:
+        run: |
           touch .env
           echo token=$DISCORD_TOKEN >> .env
           echo clientID=$DISCORD_CLIENT_ID >> .env
