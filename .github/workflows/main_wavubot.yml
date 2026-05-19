@@ -18,6 +18,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set up env file
+        run:
+          touch .env
+          echo token=$DISCORD_TOKEN >> .env
+          echo clientID=$DISCORD_CLIENT_ID >> .env
+
       - name: Set up Node.js version
         uses: actions/setup-node@v3
         with:
